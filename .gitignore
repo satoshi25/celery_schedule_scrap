@@ -1,0 +1,7 @@
+.env
+/venv
+
+celerybeat-schedule.db
+logfile.log
+.idea/
+__pycache__/
