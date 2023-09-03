@@ -1,0 +1,21 @@
+version: '3'
+services:
+  worker:
+    build: .
+    command: celery -A src.service.celery_worker worker --loglevel=info -E --logfile=./logfile.log
+    env_file:
+      - .env
+
+  beat:
+    build: .
+    command: celery -A src.service.celery_worker beat --loglevel=info
+    env_file:
+      - .env
+
+  flower:
+    image: mher/flower
+    command: flower --broker=redis://svc.sel5.cloudtype.app:30092/0 --port=5555
+    ports:
+      - "5555:5555"
+    env_file:
+      - .env
