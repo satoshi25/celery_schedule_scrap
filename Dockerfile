@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD["docker-compose", "up"]
+CMD["docker-compose up"]
