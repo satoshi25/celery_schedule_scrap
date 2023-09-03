@@ -7,4 +7,6 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["celery"]
+EXPOSE 5000
+
+CMD["docker-compose", "up"]
