@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD["celery", "-A", "src.service.celery_worker", "worker", "--loglevel=info", "-E", "--logfile=./logfile.log"]
+CMD ["celery", "-A", "src.service.celery_worker", "worker", "--loglevel=info", "-E", "--logfile=./logfile.log"]
