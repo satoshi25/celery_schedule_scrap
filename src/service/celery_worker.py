@@ -43,7 +43,7 @@ class Article(Base):
     publish_date = Column(Date, nullable=False)
 
     @classmethod
-    def create_article(cls, article: dict | ArticleModel) -> "Article":
+    def create_article(cls, article: dict) -> "Article":
         return cls(
             title=article.get("title"),
             image=article.get("image"),
