@@ -12,8 +12,8 @@ load_dotenv()
 
 class ScrapArticle:
     journal_list: list = os.getenv("SCRAP_LIST").split(",")
-    no_image: str = ("https://user-images.githubusercontent.com/"
-                     "81741466/263754639-170bee96-6728-40c6-b60d-9d45d0db4e99.jpeg")
+    days: int = int(os.getenv("DAYS"))
+    no_image: str = os.getenv("BASE_IMAGE")
 
     def scrap_articles(self) -> List[dict]:
         scrap_data = []
@@ -22,7 +22,7 @@ class ScrapArticle:
                 f"https://media.naver.com/press/{journal_url}/ranking?type=popular&date="
             )
             today = "".join(
-                str(datetime.date(datetime.today() - timedelta(days=3))).split("-")
+                str(datetime.date(datetime.today() - timedelta(days=self.days))).split("-")
             )
             url = f"{base_url}{today}"
             headers = {
