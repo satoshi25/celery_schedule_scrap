@@ -2,20 +2,26 @@ version: '3'
 services:
   worker:
     build: .
-    command: celery -A src.service.celery_worker worker --loglevel=info -E --logfile=./logfile.log
+    command: celery -A src.service.celery_worker worker --loglevel=info -E --logfile=./logs/logfile.log
+    volumes:
+      - ./logs:/logs
     env_file:
       - .env
+    environment:
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
 
   beat:
     build: .
     command: celery -A src.service.celery_worker beat --loglevel=info
     env_file:
       - .env
+    environment:
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
 
   flower:
     image: mher/flower
-    command: flower --broker=redis://svc.sel5.cloudtype.app:30092/0 --port=5555
+    command: flower --broker=${CELERY_BROKER_URL} --port=${FLOWER_PORT} --basic_auth=${FLOWER_USER}:${FLOWER_PASSWORD}
     ports:
-      - "5555:5555"
+      - ${HOST_FLOWER_PORT}:${FLOWER_PORT}
     env_file:
       - .env
