@@ -6,3 +6,5 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY . .
+
+CMD ["celery", "-A", "src.service.celery_worker", "beat", "--loglevel=info"]
