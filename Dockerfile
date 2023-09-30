@@ -8,4 +8,4 @@ RUN mkdir -p /app/logs && chmod a+w /app/logs
 
 COPY . .
 
-CMD ["celery", "-A", "src.service.celery_worker", "worker", -B "--loglevel=info", "--logfile=./logs/logfile.log"]
+CMD ["celery", "-A", "src.service.celery_worker", "worker", "-B", "--loglevel=info", "--logfile=/app/logs/celery.log"]
