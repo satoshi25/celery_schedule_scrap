@@ -3,3 +3,7 @@ venv/
 *.log
 .env
 *.db
+docker-compose.yml
+Dockerfile.beat
+Dockerfile.worker
+Dockerfile.flower

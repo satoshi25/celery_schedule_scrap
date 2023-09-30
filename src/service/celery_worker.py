@@ -6,8 +6,8 @@ from celery import chain
 
 from src.celery_config import celery_task
 from src.service.article import ScrapArticle
-from src.repository.connection import SessionFactory
-from src.repository.article_repository import ArticleModel, Article
+from src.database.connection import SessionFactory
+from src.database.repository import ArticleModel, Article
 
 
 @celery_task.task
